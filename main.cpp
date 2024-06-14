@@ -9,10 +9,6 @@ void Error_Handler() {
 int main() {
     stack_t stack;
 
-    int i = [](){
-        return 1;
-    }();
-
     stack_initialize_int(&stack, 10);
     stack_push_int(&stack, 1);
     stack_push_int(&stack, 2);
