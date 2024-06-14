@@ -3,4 +3,6 @@ project(datastructures)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(datastructures main.cpp)
+add_executable(datastructures main.cpp
+        stack_int.cpp
+        stack_int.h)

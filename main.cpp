@@ -1,42 +1,17 @@
 #include <iostream>
+#include "stack.h"
+#include "stack_int.h"
 
 void Error_Handler() {
     printf("Illegal Operation.");
 }
 
-typedef struct stack {
-    u_int size;
-    void * sl;
-    void * sp;
-} stack_t;
-
-void stack_initialize_int(stack_t * stack, u_int size) {
-    stack->size = size;
-    stack->sl = ((int *) malloc(sizeof(int) * size ));
-    stack->sp = ((int *) stack->sl) + size;
-}
-
-void stack_push_int(stack_t * stack, int value) {
-    stack->sp = ((int *) stack->sp) - 1;
-
-    if (stack->sp < stack->sl)
-        Error_Handler();
-
-    *((int *) stack->sp) = value;
-}
-
-int stack_pop_int(stack_t * stack) {
-    int * value = (int *) stack->sp;
-    stack->sp = (int *) stack->sp + 1;
-
-    if(stack->sp > ((int *) stack->sl) + stack->size)
-        Error_Handler();
-
-    return *value;
-}
-
 int main() {
     stack_t stack;
+
+    int i = [](){
+        return 1;
+    }();
 
     stack_initialize_int(&stack, 10);
     stack_push_int(&stack, 1);
