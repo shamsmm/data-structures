@@ -9,11 +9,11 @@ typedef struct stack {
     void * sp;
 } stack_t;
 
-#define stack_initialize(datatype, stack, size) \
+#define stack_initialize(datatype, stack, amount) \
 do { \
-    stack->size = size; \
-    stack->sl = ((datatype *) malloc(sizeof(datatype) * size )); \
-    stack->sp = ((datatype *) stack->sl) + size; \
+    stack->size = amount; \
+    stack->sl = ((datatype *) malloc(sizeof(datatype) * amount )); \
+    stack->sp = ((datatype *) stack->sl) + amount; \
 } while(0)
 
 #define stack_push(datatype, stack, value) \
