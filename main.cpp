@@ -8,51 +8,14 @@ void Error_Handler() {
 }
 
 void stack_test();
+void queue_test();
 void circular_queue_test();
 void linked_list_test();
 
-void add_to_queue(queue_t * queue, int value) {
-    auto * item = (queue_item *) malloc(sizeof(queue_item));
-    item->value = value;
-
-    if (queue->tail) {
-        queue->tail->next = item;
-    }
-
-    queue->tail = item;
-
-    if (!queue->head) {
-        queue->head = item;
-    }
-}
-
-int consume_queue(queue_t * queue) {
-    if (!queue->head)
-        return 0;
-
-    queue_item * item = queue->head;
-    queue->head = queue->head->next;
-
-    int value = item->value;
-    free(item);
-
-    return value;
-}
 
 int main() {
     stack_test();
-
-    queue queue{};
-    add_to_queue(&queue, 1);
-    add_to_queue(&queue, 2);
-    add_to_queue(&queue, 3);
-
-
-    printf("%d", consume_queue(&queue));
-    printf("%d", consume_queue(&queue));
-    printf("%d", consume_queue(&queue));
-
-    // consume
+    queue_test();
 
     return 0;
 }
@@ -80,4 +43,18 @@ void stack_test() {
     printf("%s\n", stack_pop(std::string, stack_ptr).c_str());
     printf("%s\n", stack_pop(std::string, stack_ptr).c_str());
     printf("%s\n", stack_pop(std::string, stack_ptr).c_str());
+}
+
+void queue_test() {
+    queue queue{};
+    queue_t * queue_ptr = &queue;
+
+    enqueue_queue(int, queue_ptr, 1);
+    enqueue_queue(int, queue_ptr, 2);
+    enqueue_queue(int, queue_ptr, 3);
+
+
+    printf("%d", consume_queue(int, queue_ptr));
+    printf("%d", consume_queue(int, queue_ptr));
+    printf("%d", consume_queue(int, queue_ptr));
 }
